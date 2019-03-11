@@ -19,7 +19,7 @@ x_coords, y_coords = zip(*points)
 A = vstack([x_coords,ones(len(x_coords))]).T
 m, c = lstsq(A, y_coords)[0]
 
-for x in arange(0, 2, 0.1):
+for x in arange(0, 2, 0.1): # with granularity of 0.1
     grid[gety(int(round(m*x + c)))][getx(int(x))] = 1
     print(int(x), int(round(m*x + c) ))
     #print(getx(x), gety(int(round(m*x + c) ) ) )
