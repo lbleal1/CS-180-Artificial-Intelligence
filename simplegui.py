@@ -32,6 +32,10 @@ plt.clf()
 img = cv2.imread('maze.png', cv2.IMREAD_GRAYSCALE)
 
 imgplot = plt.imshow(img, cmap='Greys_r')
+print(img)
+
+for x in img[0]:
+    print(x)
 
 
 plt.axis('off')
