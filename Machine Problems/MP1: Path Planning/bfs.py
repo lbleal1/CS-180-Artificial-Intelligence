@@ -40,10 +40,10 @@ def bfs(graph, start, goal):
     parent = {} 
     fringe = [] 
     fringe.append(start) #append starting node
-    while fringe:
+    
+    while fringe: #explore til the fringe is not empty!
         node = fringe.pop(0) #get vertex
-        if node not in expandedNode:
-          expandedNode.append(node) #append the considered vertex to the Expanded Nodes
+        expandedNode.append(node) #append the considered vertex to the Expanded Nodes
         if node == goal: #if reaches goal node
             return backtrace(parent, start, goal)
         for adjacent in graph.get(node, []): #consider the children of the popped node 
@@ -51,8 +51,8 @@ def bfs(graph, start, goal):
                 if start[0]<=goal[0]:
                   if adjacent[0] >= node[0]:
                     parent[adjacent] = node  
-                if start[0]>goal[0]:
-                    if adjacent[0] < node[0]:
+                if start[0]>=goal[0]:
+                    if adjacent[0] <= node[0]:
                       parent[adjacent] = node  
                 fringe.append(adjacent) 
 
@@ -83,8 +83,8 @@ grid= [ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
       ]
 
 graph = createGraph(grid)   
-startNode = (0,0)
-goalNode = (23,23)
+startNode = (5,5)
+goalNode = (8,8)
 
 print(len(grid))
 print(len(grid[0]))
