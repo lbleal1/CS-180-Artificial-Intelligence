@@ -1,39 +1,58 @@
 import matplotlib.pyplot as plt
+import numpy as np
 from scipy.misc import imresize
-# import cv2
+import cv2
 from read import *
-from plot import *
+
+def plot_polygon(coord):
+    coord.append(coord[0]) #repeat the first point to create a 'closed loop'
+    xs, ys = zip(*coord) #create lists of x and y values
+    plt.plot(xs,ys, linewidth=10) 
+
+def plot_point(pt):
+    plt.scatter(pt[0], pt[1], 30)
+
 
 start, goal, shapes = read_input('in.txt')
 
-
 plt.figure()
+plt.gca().invert_yaxis()
 
 for shape in shapes:
     plot_polygon(shape)
 
-plot_point(100, 90)
+plot_point(start)
+plot_point(goal)
 
 plt.plot(100, 200) # to ensure dimensions are 100,200
 plt.axis('off')
-plt.show()
-
 
 plt.savefig('maze.png')
+
+# plt.show()
 plt.clf() 
 
 img = cv2.imread('maze.png', cv2.IMREAD_GRAYSCALE)
 light = cv2.resize(img, (200, 100))
 
-imgplot = plt.imshow(img, cmap='Greys_r')
-print(img)
-print("GI")
-for x in light:
-    print("ONE:")
-    
+plt.axis('off')
+# imgplot = plt.imshow(img, cmap='Greys_r')
+# print(img)
 
-    print("END\n\n")
+grid = np.zeros((100, 200))
+
+for row, row_points in enumerate(light):
+
+    for col, col_val in enumerate(row_points):
+        if col_val < 255:
+            print("found a color")
+            grid[row][col] = 1
 
 
+for row in grid:
+    print(row)
+
+'''
 plt.axis('off')
 plt.show()
+'''
