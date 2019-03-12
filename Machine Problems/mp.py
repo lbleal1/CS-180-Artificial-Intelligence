@@ -1,9 +1,6 @@
 import matplotlib.pyplot as plt
+from scipy.misc import imresize
 import cv2
-
-
-my_dpi = 96
-
 
 plt.figure()
 
@@ -30,13 +27,16 @@ plt.savefig('maze.png')
 plt.clf() 
 
 img = cv2.imread('maze.png', cv2.IMREAD_GRAYSCALE)
+light = cv2.resize(img, (200, 100))
 
 imgplot = plt.imshow(img, cmap='Greys_r')
 print(img)
-
-for x in img:
-    if x.any() != 255:
-        print("ONE:", x, "END\n\n")
+print("GI")
+for x in light:
+    print("ONE:")
+    if x != 255:
+        print(x)
+    print("END\n\n")
 
 
 plt.axis('off')
