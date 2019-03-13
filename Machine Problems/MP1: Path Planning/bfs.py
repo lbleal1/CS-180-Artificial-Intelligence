@@ -36,35 +36,32 @@ def backtrace(parent, start, end):
     path.reverse()
     return path
       
-def bfs(graph, start, goal):
+def bfs(graph, startNode, goalNode):
     parent = {} 
     fringe = [] 
-    fringe.append(start) #append starting node
-    run = 1
+    fringe.append(startNode) #append starting node
+
     while fringe: #explore til the fringe is not empty!
-        node = fringe.pop(0) #get vertex
-        expandedNode.append(node) #append the considered vertex to the Expanded Nodes
-        if node == goal: #if reaches goal node
-            return backtrace(parent, start, goal)
-        for adjacent in graph.get(node, []): #consider the children of the popped node 
-            if node not in fringe: 
-                run+=1  
-                print("running=",run)  
-                if start[0]<=goal[0]:
-                  if adjacent[0] >= node[0]:
-                    parent[adjacent] = node  
-                if start[0]>=goal[0]:
-                    if adjacent[0] <= node[0]:
-                      parent[adjacent] = node  
+        currentNode = fringe.pop(0) #get vertex
+        #print(node)
+        expandedNode.append(currentNode) #append the considered vertex to the Expanded Nodes
+        if currentNode == goalNode: #if reaches goal node
+            return backtrace(parent, startNode, goalNode)
+        for adjacent in graph.get(currentNode, []): #consider the children of the popped node 
+            if currentNode not in fringe:   
+                if startNode[0]<=goalNode[0]:
+                  if adjacent[0] >= currentNode[0]:
+                    parent[adjacent] = currentNode 
+                if startNode[0]>=goalNode[0]:
+                    if adjacent[0] <= currentNode[0]:
+                      parent[adjacent] = currentNode  
                 fringe.append(adjacent) 
 
-grid = [[0 for col in range(199)] for row in range(99)]
-
-print(grid)
+grid = [[0 for col in range(200)] for row in range(100)]
 
 graph = createGraph(grid)   
 startNode = (0,0)
-goalNode = (20,0)
+goalNode = (10,10)
 
 print(len(grid))
 print(len(grid[0]))
@@ -77,3 +74,5 @@ print("number of expanded nodes:",len(expandedNode))
 end = time.time()
 print("actual running time of the program:", end - start)
 
+# reference: 
+# https://codereview.stackexchange.com/questions/135156/bfs-implementation-in-python-3
