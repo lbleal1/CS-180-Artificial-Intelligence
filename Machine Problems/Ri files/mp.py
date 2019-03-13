@@ -36,7 +36,7 @@ img = cv2.imread('maze.png', cv2.IMREAD_GRAYSCALE)
 light = cv2.resize(img, (200, 100))
 
 plt.axis('off')
-# imgplot = plt.imshow(img, cmap='Greys_r')
+imgplot = plt.imshow(img, cmap='Greys_r')
 # print(img)
 
 grid = np.zeros((100, 200))
@@ -45,14 +45,13 @@ for row, row_points in enumerate(light):
 
     for col, col_val in enumerate(row_points):
         if col_val < 255:
-            print("found a color")
+            # print("found a color")
             grid[row][col] = 1
 
 
 for row in grid:
     print(row)
 
-'''
+
 plt.axis('off')
 plt.show()
-'''
