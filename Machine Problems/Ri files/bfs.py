@@ -27,8 +27,6 @@ expandedNode = []
 def addEdge(graph,u,v): 
     graph[u].append(v)
 
-
-
 def createGraph(grid):
     #m x n matrix
     rows = len(grid)
@@ -82,39 +80,6 @@ def bfs(graph, start, goal):
                 fringe.append(adjacent) 
 
 
-'''
-grid= [ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-      ]
-
-graph = createGraph(grid)   
-startNode = (5,5)
-goalNode = (8,8)
-'''
-
-
 # START RI
 startNode, goalNode, shapes = read_input('in.txt')
 
@@ -136,16 +101,16 @@ plt.savefig('maze.png')
 plt.clf() 
 
 img = cv2.imread('maze.png', cv2.IMREAD_GRAYSCALE)
-# light = cv2.resize(img, (200, 100))
-light = cv2.resize(img, (20, 10))
+light = cv2.resize(img, (200, 100))
+# light = cv2.resize(img, (20, 20))
 
 plt.axis('off')
 imgplot = plt.imshow(img, cmap='Greys_r')
 # print(img)
-plt.show()
+# plt.show()
 
-# grid = np.zeros((100, 200))
-grid = np.zeros((10, 20))
+grid = np.zeros((100, 200))
+# grid = np.zeros((20, 20))
 
 for row, row_points in enumerate(light):
     for col, col_val in enumerate(row_points):
@@ -156,17 +121,29 @@ for row, row_points in enumerate(light):
 # END RI
 for line in grid:
     print(line)
-graph = createGraph(grid)   
+
+print(grid)
+grid = grid.tolist()
+
+for line in grid:
+    line = np.matrix(line)
+    print(line)
+
+print("original grid is")
+print(grid)
 
 print(len(grid))
 print(len(grid[0]))
 print("starting point:", startNode)
 print("goal point:", goalNode)
+
+print (start)
+
+graph = createGraph(grid)  
 path=bfs(graph, startNode, goalNode)
-'''
 print("solution Path:",path)
 print("cost of the solution:", len(path))
-'''
+
 print("number of expanded nodes:",len(expandedNode))
 end = time.time()
 print("actual running time of the program:", end - start)

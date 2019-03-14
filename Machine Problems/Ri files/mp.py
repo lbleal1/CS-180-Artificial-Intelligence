@@ -12,6 +12,22 @@ def plot_polygon(coord):
 def plot_point(pt):
     plt.scatter(pt[0], pt[1], 30)
 
+def DFS(grid, x_i = None, y_i=None, visited=None):
+    visited.append((x_i, y_i))
+    element = grid[y_i, x_i]
+
+    if element == 1: return x_i, y_i
+
+    if x_i < 0: 
+        print("negative x")
+        return
+    if x_i > grid.shape[0]: return
+
+    if y_i < 0: 
+        print("negative y")
+        return
+    if y_i > grid.shape[1]: return
+
 
 start, goal, shapes = read_input('in.txt')
 
@@ -52,6 +68,8 @@ for row, row_points in enumerate(light):
 for row in grid:
     print(row)
 
+visited = []
+DFS(grid, start[0], start[1], visited)
 
 plt.axis('off')
 plt.show()
