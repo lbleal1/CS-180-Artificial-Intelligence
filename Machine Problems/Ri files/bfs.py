@@ -1,10 +1,11 @@
-# start ri imports
+from collections import defaultdict 
+from scipy.misc import imresize
+from queue import PriorityQueue
 import matplotlib.pyplot as plt
 import numpy as np
-from scipy.misc import imresize
 import cv2
+import time
 from read import *
-
 
 def plot_polygon(coord):
     coord.append(coord[0]) #repeat the first point to create a 'closed loop'
@@ -16,9 +17,6 @@ def plot_point(pt):
 
 # end ri imports
 
-from queue import PriorityQueue
-from collections import defaultdict 
-import time
 
 start = time.time()
 
@@ -105,9 +103,8 @@ light = cv2.resize(img, (200, 100))
 # light = cv2.resize(img, (20, 20))
 
 plt.axis('off')
-imgplot = plt.imshow(img, cmap='Greys_r')
-# print(img)
-# plt.show()
+# imgplot = plt.imshow(img, cmap='Greys_r')
+
 
 grid = np.zeros((100, 200))
 # grid = np.zeros((20, 20))
@@ -115,19 +112,9 @@ grid = np.zeros((100, 200))
 for row, row_points in enumerate(light):
     for col, col_val in enumerate(row_points):
         if col_val < 255:
-            # print("found a color")
             grid[row][col] = 1
 
-# END RI
-for line in grid:
-    print(line)
-
-print(grid)
 grid = grid.tolist()
-
-for line in grid:
-    line = np.matrix(line)
-    print(line)
 
 print("original grid is")
 print(grid)
