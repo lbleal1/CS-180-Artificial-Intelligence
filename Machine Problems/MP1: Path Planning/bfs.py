@@ -8,8 +8,6 @@ expandedNode = []
 def addEdge(graph,u,v): 
     graph[u].append(v)
 
-
-
 def createGraph(grid):
     #m x n matrix
     rows = len(grid)

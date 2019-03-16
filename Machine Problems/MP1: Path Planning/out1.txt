@@ -1,0 +1,7 @@
+[[[50, 50], [30, 50], [30, 40]], [[100, 50], [20, 80], [100, 80]]]
+starting point: (0, 0)
+goal point: (10, 0)
+solution Path: [(0, 0), (1, 0), (2, 0), (3, 0), (4, 0), (5, 0), (6, 0), (7, 0), (8, 0), (9, 0), (10, 0)]
+cost of the solution: 11
+number of expanded nodes: 48
+actual running time of the program: 2.3642418384552
