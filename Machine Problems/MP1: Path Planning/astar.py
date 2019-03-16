@@ -20,10 +20,8 @@ def get_distance(x1, y1, x2, y2, technique):
     if technique == "diagonal":
         return (x1 - x2)**2 + (y1 - y2)**2 # ((child.position[0] - end_node.position[0]) ** 2) + ((child.position[1] - end_node.position[1]) ** 2)
     
-    if technique == "chebyshev":
-        dx = abs(x1 - x2)
-        dy = abs(y1 - y2)
-        return (dx + dy) + (1 - 2 * 1) * min(dx, dy)
+    if technique == "manhattan":
+        return abs(x1 - x2) + abs(y1 - y2)
 
 
 def astar(maze, start, end):
@@ -59,7 +57,7 @@ def astar(maze, start, end):
         # enqueue to closed_list
         open_list.pop(curr_index)
 
-        
+
         closed_list.append(curr_node)
 
         # Found the goal
@@ -94,20 +92,20 @@ def astar(maze, start, end):
 
             node_position = (curr_x + new_x, curr_y + new_y)
 
-            # Make sure walkable terrain
+            # make sure there is no obstacle in this node
             is_walkable = maze[node_position[0]][node_position[1]] == 0
             if not is_walkable:
                 continue
 
-            # Make sure within range
+            # make sure is in range
             is_within_range = node_position[0] > (len(maze) - 1) or node_position[0] < 0 or node_position[1] > (len(maze[len(maze)-1]) -1) or node_position[1] < 0
             if is_within_range:
                 continue
 
-            # Create new node
+            # make new node for this adj cell
             new_node = Node(curr_node, node_position)
 
-            # Append
+            # add this adj cell to the list of children of the current node
             children.append(new_node)
 
         # Check children
@@ -120,8 +118,7 @@ def astar(maze, start, end):
             child.cost = curr_node.cost + 1
 
             # child.heuristic = ((child.position[0] - end_node.position[0]) ** 2) + ((child.position[1] - end_node.position[1]) ** 2)
-            child.heuristic = ((child.position[0] - end_node.position[0]) ** 2) + ((child.position[1] - end_node.position[1]) ** 2)
-            # child.heuristic = get_distance(child.position[0], child.position[1], end_node.position[0], end_node.position[1], "diagonal")
+            child.heuristic = get_distance(child.position[0], child.position[1], end_node.position[0], end_node.position[1], "diagonal")
             
             # heuristic could either be chebychev or diagonal
 
